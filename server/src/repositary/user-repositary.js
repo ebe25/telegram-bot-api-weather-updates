@@ -1,27 +1,24 @@
 const User = require("../model/User");
-
-const c = async () => {
-  try {
-    const client = await connectDb();
-    console.log("---", client.modelNames);
-    // return await client.models Bot_User.create({
-    //   name: "abv",
-    //   city: "asdf",
-    //   country: "Uk",
-    // });
-  } catch (error) {
-    console.log("Errr", error);
+class UserRepo {
+  constructor() {
+    this.model = User;
   }
-};
-c();
-
-
-class UserRepo{
-    async create(){
-        try {
-            
-        } catch (error) {
-            throw 
-        }
+  async create(data) {
+    try {
+      const user = await User.create({data});
+      return user;
+    } catch (error) {
+      throw error;
     }
+  }
+  async getCity(chatId) {
+    try {
+      const city = await this.model.findOne({chatId: chatId}).exec();
+      return city;
+    } catch (error) {
+      throw error;
+    }
+  }
 }
+
+module.exports = {UserRepo};

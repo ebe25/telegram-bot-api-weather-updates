@@ -8,10 +8,13 @@ const UserSchema = {
   city: {
     type: String,
     required: true,
-    
   },
   country: {
     type: String,
+    required: true,
+  },
+  chatId: {
+    type: Number,
     required: true,
   },
 };
